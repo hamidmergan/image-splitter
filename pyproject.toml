@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "image-splitter-cv"
+version = "0.1.0"
+description = "Split a scan or photo with several receipts, photos or cards into one straight image per item, with OpenCV and an optional vision model"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Hamid Mergan" }]
+keywords = ["scan", "receipt", "crop", "deskew", "perspective", "opencv", "split", "vision", "llm", "ollama", "openai"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia :: Graphics :: Graphics Conversion",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+    "Typing :: Typed",
+]
+dependencies = [
+    "numpy>=1.21",
+    "opencv-python-headless>=4.8",
+    "Pillow>=10.0",
+    "pypdfium2>=4.30",
+]
+
+[project.optional-dependencies]
+vision = ["openai>=1.30"]
+ui = ["fastapi>=0.100", "uvicorn>=0.23", "python-multipart>=0.0.6"]
+test = ["pytest>=7", "openai>=1.30", "httpx>=0.24", "fastapi>=0.100", "uvicorn>=0.23", "python-multipart>=0.0.6"]
+dev = ["pytest>=7", "openai>=1.30", "httpx>=0.24", "fastapi>=0.100", "uvicorn>=0.23", "python-multipart>=0.0.6", "build", "twine"]
+
+[project.urls]
+Homepage = "https://github.com/hamidmergan/image-splitter"
+Source = "https://github.com/hamidmergan/image-splitter"
+Issues = "https://github.com/hamidmergan/image-splitter/issues"
+Changelog = "https://github.com/hamidmergan/image-splitter/blob/main/CHANGELOG.md"
+
+[project.scripts]
+image-splitter = "image_splitter.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+image_splitter = ["py.typed", "web/static/*", "samples/*.jpg", "samples/*.png", "samples/*.pdf"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>image-splitter</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>image-splitter</h1>
+    <label class="btn primary">
+      Add images
+      <input type="file" id="file-input" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.gif,.bmp,.tif,.tiff" hidden>
+    </label>
+    <button class="btn" id="samples-button" title="Load sample images: receipts, photos and cards">Try samples</button>
+    <span class="drop-hint">Scans, photos or PDFs; drop them anywhere</span>
+    <span class="spacer"></span>
+    <label class="format">
+      Format
+      <select id="format">
+        <option value="jpg">JPG</option>
+        <option value="png">PNG</option>
+        <option value="webp">WEBP</option>
+        <option value="tif">TIFF</option>
+      </select>
+    </label>
+    <button class="btn primary" id="download-button">Download ZIP</button>
+    <button class="btn" id="clear-button">Clear</button>
+  </header>
+
+  <main class="layout">
+    <aside class="card files">
+      <h2>Files</h2>
+      <ul id="file-list" class="file-list"></ul>
+      <p class="empty" id="files-empty">No files yet.</p>
+    </aside>
+
+    <section class="card editor">
+      <div class="toolbar">
+        <span class="page-title" id="page-title">No page selected</span>
+        <span class="spacer"></span>
+        <button class="btn" id="add-button" title="Add a frame in the middle of the page">Add frame</button>
+        <button class="btn" id="rotate-button" title="Turn the selected part clockwise (R)">Rotate ↻</button>
+        <button class="btn" id="delete-button" title="Remove the selected frame (Delete)">Delete</button>
+        <button class="btn" id="reset-button" title="Go back to the frames that were found">Reset page</button>
+      </div>
+      <div class="stage" id="stage">
+        <svg id="canvas" class="canvas" hidden></svg>
+        <div class="placeholder" id="placeholder">
+          <p id="placeholder-text">Add images to start. Each item gets a frame you can correct.</p>
+          <button class="btn primary" id="placeholder-samples">Try with sample images</button>
+        </div>
+      </div>
+      <p class="help">
+        Drag a corner to move it, drag inside a frame to move the whole frame, and drag on an empty spot to draw a new frame.
+        The dot marks the corner that becomes the top left. Keys: <kbd>R</kbd> rotates, <kbd>Delete</kbd> removes, <kbd>Esc</kbd> deselects.
+      </p>
+    </section>
+
+    <section class="card parts">
+      <h2>Parts <span class="count" id="part-count"></span></h2>
+      <div class="thumbs" id="part-list"></div>
+      <p class="empty" id="parts-empty">The cut-out parts of the page appear here.</p>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# Start the web page with: docker compose up
+# Then open http://localhost:8765 (another port: IMAGE_SPLITTER_PORT=9000 docker compose up)
+services:
+  image-splitter:
+    build: .
+    image: image-splitter
+    ports:
+      - "127.0.0.1:${IMAGE_SPLITTER_PORT:-8765}:8765"  # only reachable from this machine
+    environment:
+      # Optional vision model, e.g. Ollama on this machine:
+      # IMAGE_SPLITTER_BASE_URL=http://host.docker.internal:11434/v1 IMAGE_SPLITTER_MODEL=qwen2.5vl docker compose up
+      IMAGE_SPLITTER_BASE_URL: ${IMAGE_SPLITTER_BASE_URL:-}
+      IMAGE_SPLITTER_MODEL: ${IMAGE_SPLITTER_MODEL:-}
+      IMAGE_SPLITTER_API_KEY: ${IMAGE_SPLITTER_API_KEY:-}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
