@@ -13,6 +13,18 @@ image-splitter currently supports:
 - Images (PNG, JPG, WEBP, GIF, BMP, TIFF)
 - PDF (every page is split on its own)
 
+## Quick start
+
+```bash
+docker run --rm -p 127.0.0.1:8765:8765 ghcr.io/hamidmergan/image-splitter
+```
+
+Open http://localhost:8765 and click **Try samples**, or drop your own scans onto the page.
+
+![The web page with three receipts found on a photo of a table](docs/screenshot.jpg)
+
+Without Docker, see [Installation](#installation).
+
 ## Prerequisites
 
 - Python 3.9 or newer
