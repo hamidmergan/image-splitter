@@ -63,4 +63,4 @@ drop files → OpenCV (+ model) proposes frames → drag corners / move / add / 
 - [x] 15 Dockerfile, .dockerignore, compose.yaml (port only on 127.0.0.1)
 - [x] 16 `--allowed-hosts` / `IMAGE_SPLITTER_ALLOWED_HOSTS`, container answers only localhost
 - [x] 17 Workflow `docker.yml`: image to ghcr.io/hamidmergan/image-splitter (amd64, arm64) on push to main and tags
-- [ ] 18 After the first push: check that the ghcr.io package is public
+- [x] 18 After the first push: check that the ghcr.io package is public
